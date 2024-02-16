@@ -1,0 +1,60 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+button {
+    height: 5rem;
+    width: 5rem;
+    /*border-radius: 1rem;*/
+    font-size: 2rem;
+}
+
+.title {
+    font-size: 2rem;
+}
+
+.display {
+    font-size: 2rem;
+    text-align: right;
+    padding: 1rem;
+    margin: 1rem;
+    background-color: gray;
+    width: 28rem;
+    border-radius: 0.5rem;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.calc-box{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 1rem;
+    padding: 2rem 1rem;
+    background-color: aquamarine;
+    border-radius: 1rem;
+}
+
+.numbers-box, .operations-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.button-line {
+    display: flex;
+    gap: 1rem;
+}
+
+.button-line, .numbers-box, .operations-box {
+    gap: 1rem;
+}
+
+.buttons-box {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
