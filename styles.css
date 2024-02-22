@@ -13,13 +13,28 @@ button {
     font-size: 2rem;
 }
 
+.display, .small-display {
+    text-align: right;
+    width: 28rem;
+}
+
 .display {
     font-size: 2rem;
-    text-align: right;
+    height: 2.31rem;
+}
+
+.small-display {
+    font-size: 1.5rem;
+    height: 1.7rem;
+}
+
+.all-displays {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     padding: 1rem;
     margin: 1rem;
     background-color: gray;
-    width: 28rem;
     border-radius: 0.5rem;
 }
 
