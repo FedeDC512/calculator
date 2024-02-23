@@ -11,16 +11,63 @@ const multiply = function(num1, num2) {
 };
 
 const divide = function(num1, num2) {
-  return Math.round((num1/num2) * 100) / 100;
+    if(num2 == 0){
+        alert("You can't divide by 0, the result would be Infinity!");
+        clearAll();
+        return "";
+    } else return Math.round((num1/num2) * 100000) / 100000;
 };
 
 const power = function(num1, num2) {
-    let power = 1;
-    for(let i = 0; i< num2; i++){
-      power = power * num1;
-    }
-    return power;
-  };
+    return Math.round((Math.pow(num1, num2)) * 100000) / 100000;
+};
+
+const equal = function(){
+    if(firstValue != undefined && operation != undefined && display.innerHTML != "" && display.innerHTML != "-"){ //check if there is only the first value
+        if ((smallDisplay.innerHTML).includes("=")){ //check if a previous operation was done
+            firstValue = display.innerHTML;
+            let lastOperationChar;
+            for (let i = 0; i<5; i++){
+                if(operation == operationsIds[i]){ lastOperationChar = operationsChar[i]; }
+            }
+            smallDisplay.innerHTML = firstValue +" "+ lastOperationChar +" "+secondValue+" =";
+        } else {
+            secondValue = display.innerHTML; 
+            smallDisplay.innerHTML = smallDisplay.innerHTML +" "+secondValue+" =";
+        };
+
+        firstValue = parseFloat(firstValue);
+        secondValue = parseFloat(secondValue);
+
+        switch (operation) {
+            case "plus":
+            result = add(firstValue, secondValue);
+            break;
+            case "minus":
+            result = subtract(firstValue, secondValue);
+            break;
+            case "times":
+            result = multiply(firstValue, secondValue);
+            break;
+            case "divided":
+            result = divide(firstValue, secondValue);
+            break;
+            case "power":
+            result = power(firstValue, secondValue);
+            break;
+        };
+            
+        display.innerHTML = result;
+    };
+}
+
+const clearAll = function(){
+    display.innerHTML = ""; 
+    smallDisplay.innerHTML = "";
+    firstValue = undefined;
+    secondValue = undefined;
+    operation = undefined;
+}
 
 let firstValue;
 let secondValue;
@@ -59,13 +106,7 @@ numberButtonDot.addEventListener('click', () => {
 });
 
 let numberButtonClear = document.querySelector('#clear');
-numberButtonClear.addEventListener('click', () => {
-    display.innerHTML = ""; 
-    smallDisplay.innerHTML = "";
-    firstValue = 0;
-    secondValue = 0;
-    operation = "";
-});
+numberButtonClear.addEventListener('click', clearAll);
 
 let numberButtonBackspace = document.querySelector('#backspace');
 numberButtonBackspace.addEventListener('click', () => {
@@ -77,53 +118,29 @@ let operationsIds = ["plus", "minus", "times", "divided", "power"];
 let operationsChar = ["+", "-", "*", "/", "^"];
 
 let numberButtonEqual = document.querySelector('#equal');
-numberButtonEqual.addEventListener('click', () => {
-    if(display.innerHTML){ //check if there is only the first value (it works even if no operation is selected, to fix)
-        if ((smallDisplay.innerHTML).includes("=")){ //check if a previous operation was done
-            firstValue = display.innerHTML;
-            let lastOperationChar;
-            for (let i = 0; i<5; i++){
-                if(operation == operationsIds[i]){ lastOperationChar = operationsChar[i]; }
-            }
-            smallDisplay.innerHTML = firstValue +" "+ lastOperationChar +" "+secondValue+" =";
-        } else {
-            secondValue = display.innerHTML; 
-            smallDisplay.innerHTML = smallDisplay.innerHTML +" "+secondValue+" =";
-        };
-
-        firstValue = parseFloat(firstValue);
-        secondValue = parseFloat(secondValue);
-
-        switch (operation) {
-            case "plus":
-            result = add(firstValue, secondValue);
-            break;
-            case "minus":
-            result = subtract(firstValue, secondValue);
-            break;
-            case "times":
-            result = multiply(firstValue, secondValue);
-            break;
-            case "divided":
-            result = divide(firstValue, secondValue);
-            break;
-            case "power":
-            result = power(firstValue, secondValue);
-            break;
-        };
-            
-        display.innerHTML = result;
-    };
-});
+numberButtonEqual.addEventListener('click', equal);
 
 for (let i = 0; i<5; i++){
     let numberButtonOperation = document.querySelector('#'+operationsIds[i]);
     numberButtonOperation.addEventListener('click', () => {
-        //if(display.innerHTML && smallDisplay.innerHTML){
-            firstValue = display.innerHTML; 
-            operation = numberButtonOperation.id;
-            smallDisplay.innerHTML = firstValue + " "+operationsChar[i];
-            display.innerHTML = "";
-        //};
+        if(display.innerHTML != "" && display.innerHTML != "-"){
+            if((smallDisplay.innerHTML).includes("+") || (smallDisplay.innerHTML).includes("-") || (smallDisplay.innerHTML).includes("*") || (smallDisplay.innerHTML).includes("/") || (smallDisplay.innerHTML).includes("^")) { //check if the button is used as an equal like 3+3+
+                equal();
+                firstValue = display.innerHTML;
+                secondValue = undefined;
+                operation = numberButtonOperation.id;
+                smallDisplay.innerHTML = display.innerHTML + " "+operationsChar[i];
+                display.innerHTML = "";
+            } else {
+                firstValue = display.innerHTML; 
+                operation = numberButtonOperation.id;
+                smallDisplay.innerHTML = firstValue + " "+operationsChar[i];
+                display.innerHTML = "";
+            }
+        } else {
+            if(numberButtonOperation.id == "minus" && !(display.innerHTML).includes("-")){
+                display.innerHTML = "-";
+            }
+        };
     });
 }
