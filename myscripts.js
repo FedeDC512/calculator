@@ -77,6 +77,9 @@ const setMaxDisplayLength = function(display, maxLength){
                 if (display.textContent.length > maxLength) {
                     alert("Warning! The entered number or the obtained result exceeds "+maxLength+" characters, the displayed value may not be accurate.\nExpected value = "+display.textContent);
                     display.textContent = display.textContent.slice(0, maxLength);
+                } else if ( display.textContent == "Infinity"){
+                    alert("Warning! The entered number or the obtained result exceeds "+maxLength+" characters, the displayed value may not be accurate.\nExpected value = "+display.textContent);
+                    clearAll();
                 }
             }
         });
@@ -163,3 +166,27 @@ for (let i = 0; i<5; i++){
         };
     });
 }
+
+document.addEventListener('keydown', function(event) {
+    for(let i = 0; i<10; i++){
+        if(event.key === ''+i){
+            document.getElementById('n'+i).click();
+        }
+    }
+    if(event.key === '.'){ document.getElementById('ndot').click(); }
+    if(event.key === '+'){ document.getElementById('plus').click(); }
+    if(event.key === '-'){ document.getElementById('minus').click(); }
+    if(event.key === '*'){ document.getElementById('times').click(); }
+    if(event.key === '/'){ document.getElementById('divided').click(); }
+    if(event.key === '^'){ document.getElementById('power').click(); }
+    if(event.key === 'C' || event.key === 'c'){ document.getElementById('clear').click(); }
+    if(event.key === 'Backspace'){ document.getElementById('backspace').click(); }
+
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        document.getElementById("equal").click();
+    }
+    /*if(event.key === 'Enter') {
+        document.getElementById("equal").click();
+    }*/
+});
