@@ -56,7 +56,7 @@ const equal = function(){
             result = power(firstValue, secondValue);
             break;
         };
-        result=Math.round((result) * 100000) / 100000;
+        result=Math.round((result) * 100000000000000) / 100000000000000;
             
         display.innerHTML = result;
         console.log(firstValue + " "+operation+" "+secondValue+" equal "+result);
@@ -78,6 +78,9 @@ const setMaxDisplayLength = function(display, maxLength){
                 if (display.textContent.length > maxLength) {
                     alert("Warning! The entered number or the obtained result exceeds "+maxLength+" characters, the displayed value may not be accurate.\nExpected value = "+display.textContent);
                     display.textContent = display.textContent.slice(0, maxLength);
+                } else if((display.textContent).includes("e")){
+                    alert("Warning! The entered number or the obtained result exceeds "+maxLength+" characters, the displayed value may not be accurate.\nExpected value = "+display.textContent);
+                    clearAll();
                 } else if ( display.textContent == "Infinity"){
                     alert("Warning! The entered number or the obtained result exceeds "+maxLength+" characters, the displayed value may not be accurate.\nExpected value = "+display.textContent);
                     clearAll();
