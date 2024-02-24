@@ -58,6 +58,7 @@ const equal = function(){
         };
             
         display.innerHTML = result;
+        console.log(firstValue + " "+operation+" "+secondValue+" equal "+result);
     };
 }
 
@@ -69,12 +70,30 @@ const clearAll = function(){
     operation = undefined;
 }
 
+const setMaxDisplayLength = function(display, maxLength){
+    let observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList' && mutation.target === display) {
+                if (display.textContent.length > maxLength) {
+                    alert("Warning! The entered number or the obtained result exceeds "+maxLength+" characters, the displayed value may not be accurate.\nExpected value = "+display.textContent);
+                    display.textContent = display.textContent.slice(0, maxLength);
+                }
+            }
+        });
+    });
+    var config = { childList: true };
+    observer.observe(display, config);
+}
+
 let firstValue;
 let secondValue;
 let operation;
 let result;
 let display = document.querySelector('.display');
 let smallDisplay = document.querySelector('.small-display');
+
+setMaxDisplayLength(display, 16);
+setMaxDisplayLength(smallDisplay, 16+16+5)
 
 //let numberButton;
 for (let i = 1; i<10; i++){
@@ -124,7 +143,7 @@ for (let i = 0; i<5; i++){
     let numberButtonOperation = document.querySelector('#'+operationsIds[i]);
     numberButtonOperation.addEventListener('click', () => {
         if(display.innerHTML != "" && display.innerHTML != "-"){
-            if((smallDisplay.innerHTML).includes("+") || (smallDisplay.innerHTML).includes("-") || (smallDisplay.innerHTML).includes("*") || (smallDisplay.innerHTML).includes("/") || (smallDisplay.innerHTML).includes("^")) { //check if the button is used as an equal like 3+3+
+            if(((smallDisplay.innerHTML).includes("+") || (smallDisplay.innerHTML).includes("-") || (smallDisplay.innerHTML).includes("*") || (smallDisplay.innerHTML).includes("/") || (smallDisplay.innerHTML).includes("^")) && !(smallDisplay.innerHTML).includes("=")) { //check if the button is used as an equal like 3+3+
                 equal();
                 firstValue = display.innerHTML;
                 secondValue = undefined;

@@ -5,8 +5,29 @@ body {
 button {
     height: 5rem;
     width: 5rem;
-    /*border-radius: 1rem;*/
+    border-radius: 1rem;
     font-size: 2rem;
+    background-color: #bdbdc8;
+    border: 0;
+}
+
+button, .calc-box, .all-displays {
+    border: 1px solid black;
+}
+
+button:active{ 
+    transform: scale(0.98); 
+    /* Scaling button to 0.98 to its original size */ 
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24); 
+    /* Lowering the shadow */ 
+} 
+
+#plus, #minus, #times, #divided, #power {
+    background-color: #828193;
+}
+
+#clear, #backspace, #equal {
+    background-color: #7f91f5;
 }
 
 .title {
@@ -34,7 +55,7 @@ button {
     flex-direction: column;
     padding: 1rem;
     margin: 1rem;
-    background-color: gray;
+    background-color: #d0e0df;
     border-radius: 0.5rem;
 }
 
@@ -49,7 +70,7 @@ button {
     flex-direction: column;
     margin: 1rem;
     padding: 2rem 1rem;
-    background-color: aquamarine;
+    background-color: #8a8cb2;
     border-radius: 1rem;
 }
 
