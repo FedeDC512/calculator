@@ -56,6 +56,7 @@ const equal = function(){
             result = power(firstValue, secondValue);
             break;
         };
+        result=Math.round((result) * 100000) / 100000;
             
         display.innerHTML = result;
         console.log(firstValue + " "+operation+" "+secondValue+" equal "+result);
@@ -186,7 +187,4 @@ document.addEventListener('keydown', function(event) {
         event.preventDefault();
         document.getElementById("equal").click();
     }
-    /*if(event.key === 'Enter') {
-        document.getElementById("equal").click();
-    }*/
 });
