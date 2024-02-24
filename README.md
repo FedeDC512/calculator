@@ -5,6 +5,7 @@ This Calculator project is a web-based application developed using HTML, CSS, an
 
 - [User Interface Overview](#user-interface-overview)
 - [Functionality](#functionality)
+- [Errors Handling](#errors-handling)
 - [Visual Design](#visual-design)
 - [Conclusion](#conclusion)
 
@@ -39,20 +40,25 @@ The Calculator project features a clean and user-friendly interface:
     
 - **Negative Numbers Support:**
   - The calculator facilitates operations with negative numbers by allowing the user to insert the minus button (-) first. When the minus button is pressed initially, only the negative sign will be inserted, enabling seamless calculations involving negative values without the need for additional input steps.
+  
+- **Keyboard Support:**
+  - For user convenience, the calculator supports keyboard input. You can press numeric keys, decimal points, and various operation keys directly on your keyboard.
     
-- **Error Handling:**
-  - The calculator handles division by zero gracefully, providing a warning and clearing the input to prevent inaccurate results.
- 
+## Errors Handling
+
 - **Input Restrictions:**
   - The calculator enforces input restrictions to ensure accurate and meaningful calculations.
     - Dot (Decimal Point): The dot can only be pressed once, preventing invalid numbers with multiple decimal points. If the dot is pressed when the display is blank, a leading zero will be automatically added.
     - Double Zero (00): Pressing the double zero button without any preceding input will result in only a single zero being displayed. This prevents redundant zeros at the beginning of numbers.
 
+- **Division by Zero:**
+  - The calculator handles division by zero gracefully, providing a warning and clearing the input to prevent inaccurate results.
+
 - **Input Validation:**
   - The calculator ensures that the entered number or result does not exceed a maximum length of 16 characters. If the limit is exceeded, a warning alerts the user that the displayed value may not be accurate.
 
-- **Keyboard Support:**
-  - For user convenience, the calculator supports keyboard input. You can press numeric keys, decimal points, and various operation keys directly on your keyboard.
+- **Exponential Notation Handling:**
+  - The calculator handles results written in exponential notation by displaying an alert to notify the user. However, the exponential notation result will not be displayed in the main or small display. This ensures clarity and prevents potential confusion when dealing with large or very small numbers.
 
 ## Visual Design
 
@@ -72,5 +78,3 @@ The Calculator project features a clean and user-friendly interface:
 
 ## Conclusion
 In conclusion, the Calculator project provides a robust tool for basic arithmetic and complex mathematical operations. Its intuitive interface, responsive design, and comprehensive functionality offer users a seamless experience. This project has significantly enhanced my HTML, CSS, and JavaScript skills. The hands-on experience of designing a visually appealing and functional calculator enhanced my understanding of front-end development, providing practical insights into effective user interface design and responsive web application behavior.
-
-

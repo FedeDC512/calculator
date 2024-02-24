@@ -75,14 +75,14 @@ const setMaxDisplayLength = function(display, maxLength){
     let observer = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
             if (mutation.type === 'childList' && mutation.target === display) {
-                if (display.textContent.length > maxLength) {
+                if((display.textContent).includes("e")){
+                    alert("Warning! The entered number or the obtained result is written with exponential notation, the value can't be displayed.\nExpected value = "+display.textContent);
+                    clearAll();
+                } else if (display.textContent.length > maxLength) {
                     alert("Warning! The entered number or the obtained result exceeds "+maxLength+" characters, the displayed value may not be accurate.\nExpected value = "+display.textContent);
                     display.textContent = display.textContent.slice(0, maxLength);
-                } else if((display.textContent).includes("e")){
-                    alert("Warning! The entered number or the obtained result exceeds "+maxLength+" characters, the displayed value may not be accurate.\nExpected value = "+display.textContent);
-                    clearAll();
                 } else if ( display.textContent == "Infinity"){
-                    alert("Warning! The entered number or the obtained result exceeds "+maxLength+" characters, the displayed value may not be accurate.\nExpected value = "+display.textContent);
+                    alert("Warning! The entered number or the obtained result exceeds "+maxLength+" characters, the value can't be displayed.\nExpected value = "+display.textContent);
                     clearAll();
                 }
             }
